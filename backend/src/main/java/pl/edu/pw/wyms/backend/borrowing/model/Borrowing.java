@@ -1,17 +1,19 @@
-package pl.edu.pw.wyms.backend.borrowing;
+package pl.edu.pw.wyms.backend.borrowing.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.pw.wyms.backend.copy.Copy;
-import pl.edu.pw.wyms.backend.reader.Reader;
+import pl.edu.pw.wyms.backend.copy.model.Copy;
+import pl.edu.pw.wyms.backend.reader.model.Reader;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "borrowing")
+@Table(name = "borrowings")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Borrowing {
 
     @Id

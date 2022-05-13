@@ -1,8 +1,9 @@
-package pl.edu.pw.wyms.backend.reader;
+package pl.edu.pw.wyms.backend.reader.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.pw.wyms.backend.borrowing.Borrowing;
+import pl.edu.pw.wyms.backend.borrowing.model.Borrowing;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,8 +11,9 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "reader")
+@Table(name = "readers")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Reader {
     @Id
     @SequenceGenerator(name = "reader_sequence", sequenceName = "reader_sequence", allocationSize = 1)
@@ -24,6 +26,9 @@ public class Reader {
 
     @Column
     private String lastName;
+
+    @Column
+    private String libraryCardNumber;
 
     @OneToMany
     @JoinColumn(name = "reader_id")

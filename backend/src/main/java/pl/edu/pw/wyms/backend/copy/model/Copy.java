@@ -1,17 +1,19 @@
-package pl.edu.pw.wyms.backend.copy;
+package pl.edu.pw.wyms.backend.copy.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.pw.wyms.backend.book.Book;
-import pl.edu.pw.wyms.backend.borrowing.Borrowing;
+import pl.edu.pw.wyms.backend.book.model.Book;
+import pl.edu.pw.wyms.backend.borrowing.model.Borrowing;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@Table(name = "copy")
+@Table(name = "copies")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Copy {
 
     @Id

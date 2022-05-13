@@ -1,16 +1,18 @@
-package pl.edu.pw.wyms.backend.author;
+package pl.edu.pw.wyms.backend.author.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.edu.pw.wyms.backend.book.Book;
+import pl.edu.pw.wyms.backend.book.model.Book;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
-@Table(name = "author")
+@Table(name = "authors")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Author {
 
     @Id
