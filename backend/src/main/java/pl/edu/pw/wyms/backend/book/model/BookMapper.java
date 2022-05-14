@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class BookMapper {
 
     public static BookDTO mapBookToBookDTO(Book book) {
-        return new BookDTO(book.getId(), book.getTitle(), book.getAuthor().getId(), book.getGenre());
+        return new BookDTO(book.getId(), book.getIsbn(), book.getTitle(), book.getAuthor().getId(), book.getGenre());
     }
 
     public static List<BookDTO> mapBookListToBookDTOList(List<Book> books) {
@@ -14,6 +14,6 @@ public class BookMapper {
     }
 
     public static Book mapBookDTOToBook(BookDTO book) {
-        return new Book(book.getId(), book.getTitle(), null, book.getGenre(), null);
+        return new Book(book.getId(), book.getIsbn(), book.getTitle(), null, book.getGenre(), null);
     }
 }

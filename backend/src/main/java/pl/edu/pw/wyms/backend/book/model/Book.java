@@ -21,6 +21,9 @@ public class Book {
     @Column(updatable = false)
     private Long id;
 
+    @Column(name = "ISBN")
+    private String isbn;
+
     @Column(name = "title")
     private String title;
 

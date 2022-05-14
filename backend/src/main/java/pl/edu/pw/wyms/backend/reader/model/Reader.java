@@ -8,7 +8,6 @@ import pl.edu.pw.wyms.backend.borrowing.model.Borrowing;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 @Data
 @Table(name = "readers")

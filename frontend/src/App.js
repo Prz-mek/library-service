@@ -5,7 +5,9 @@ import Borrowings from "./pages/Borrowings";
 import Copies from "./pages/Copies";
 import Books from "./pages/Books";
 import Authors from "./pages/Authors";
-import Readers from "./pages/Readers";
+import Readers from "./pages/Reader/Readers";
+import AddReader from "./pages/Reader/AddReader";
+import EditReader from "./pages/Reader/EditReader";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/readers" element={<Readers />} />
+        <Route path="/reader/add" element={<AddReader />} />
+        <Route path="/reader/edit" element={<EditReader />} />
         <Route path="/authors" element={<Authors />} />
         <Route path="/borrowings" element={<Borrowings />} />
         <Route path="/copies" element={<Copies />} />

@@ -6,6 +6,7 @@ import pl.edu.pw.wyms.backend.reader.model.ReaderDTO;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "api/v1/reader")
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class ReaderController {
         return readerService.getAllReaders();
     }
 
-    @GetMapping(path = "/{ReaderId}")
+    @GetMapping(path = "/{readerId}")
     public ReaderDTO Reader(@PathVariable("readerId") Long readerId) {
         return readerService.getReader(readerId);
     }
@@ -30,7 +31,7 @@ public class ReaderController {
 
     @PutMapping(path = "/{readerId}")
     public void updateReader(@PathVariable("readerId") Long readerId, @RequestBody ReaderDTO reader) {
-        System.out.println(reader.getFirstName() + " " + reader.getLastName());
+        System.out.println(reader.getFirstName() + " " + reader.getLastName() + " " + reader.getLibraryCardNumber());
         reader.setId(readerId);
         readerService.updateReader(reader);
     }

@@ -6,6 +6,7 @@ import pl.edu.pw.wyms.backend.author.model.AuthorDTO;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "api/v1/author")
 @RequiredArgsConstructor

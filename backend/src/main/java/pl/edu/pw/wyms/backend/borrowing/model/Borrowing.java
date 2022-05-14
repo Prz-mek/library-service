@@ -22,8 +22,6 @@ public class Borrowing {
     @Column(updatable = false)
     private Long id;
 
-    private String title;
-
     @ManyToOne
     @JoinColumn(name = "copy_id")
     private Copy copy;
