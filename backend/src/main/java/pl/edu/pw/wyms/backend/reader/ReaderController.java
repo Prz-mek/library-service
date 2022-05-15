@@ -25,7 +25,7 @@ public class ReaderController {
 
     @PostMapping
     public void addReader(@RequestBody ReaderDTO reader) {
-        System.out.println(reader.getFirstName() + " " + reader.getLastName());
+        System.out.println(reader.getFirstName() + " " + reader.getLastName() + " " + reader.getLibraryCardNumber());
         readerService.addReader(reader);
     }
 

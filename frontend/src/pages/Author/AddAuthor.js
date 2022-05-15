@@ -8,17 +8,16 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import "../../index.css";
 
-const apiAddress = "http://localhost:8080/api/v1/reader";
+const apiAddress = "http://localhost:8080/api/v1/author";
 
-export default function AddReader() {
+export default function AddAuthor() {
 
   function submitHandler(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const reader = {
+    const author = {
       firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      libraryCardNumber: data.get("libraryCardNumber")
+      lastName: data.get("lastName")
     }
     fetch(apiAddress, {
       method: 'POST',
@@ -26,14 +25,14 @@ export default function AddReader() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(reader)
+      body: JSON.stringify(author)
     }).then(res => console.log(res))
   }
 
   return (
     <div className="login">
       <Container component="main" maxWidth="sm">
-        <Link to="/readers">Powrót</Link>
+        <Link to="/authors">Powrót</Link>
         <Box sx={{ p: { xs: 4, sm: 6, md: 6 } }}></Box>
         <Box
           sx={{
@@ -48,7 +47,7 @@ export default function AddReader() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Rejestracja czytelnika
+            Dodaj autora
           </Typography>
           <Box
             component="form"
@@ -81,19 +80,6 @@ export default function AddReader() {
                   color="secondary"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="libraryCardNumber"
-                  label="Numer karty bibliotecznej"
-                  // type="libraryCardNumber"
-                  id="libraryCardNumber"
-                  autoComplete="libraryCardNumber"
-                  autoFocus
-                  color="secondary"
-                />
-              </Grid>
             </Grid>
             
             <Button
@@ -104,7 +90,7 @@ export default function AddReader() {
                 color="secondary"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Zarejestruj czytelnika
+                Dodaj
               </Button>
           </Box>
         </Box>

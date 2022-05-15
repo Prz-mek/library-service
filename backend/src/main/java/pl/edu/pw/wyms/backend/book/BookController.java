@@ -27,6 +27,8 @@ public class BookController {
 
     @PostMapping
     public void addBook(@RequestBody BookDTO book) {
+        System.out.println(book);
+        System.out.println(book.getAuthorId());
         bookService.addBook(book);
     }
 

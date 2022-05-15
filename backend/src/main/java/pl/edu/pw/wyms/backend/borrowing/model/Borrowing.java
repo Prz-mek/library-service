@@ -32,7 +32,7 @@ public class Borrowing {
 
     private Date dateOfBorrow;
 
-    Integer extensionsNumber;
+    private Integer extensionsNumber;
 
     private Date deadline;
 
