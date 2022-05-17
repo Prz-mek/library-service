@@ -25,13 +25,11 @@ public class ReaderController {
 
     @PostMapping
     public void addReader(@RequestBody ReaderDTO reader) {
-        System.out.println(reader.getFirstName() + " " + reader.getLastName() + " " + reader.getLibraryCardNumber());
         readerService.addReader(reader);
     }
 
     @PutMapping(path = "/{readerId}")
     public void updateReader(@PathVariable("readerId") Long readerId, @RequestBody ReaderDTO reader) {
-        System.out.println(reader.getFirstName() + " " + reader.getLastName() + " " + reader.getLibraryCardNumber());
         reader.setId(readerId);
         readerService.updateReader(reader);
     }

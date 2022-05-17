@@ -49,7 +49,7 @@ export default function AddBook() {
                     }}
                 >
                     <Typography component="h1" variant="h5">
-                        Dodaj autora
+                        Dodaj książkę
                     </Typography>
                     <Box
                         component="form"

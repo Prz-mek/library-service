@@ -19,7 +19,7 @@ export default function AddBorrowing() {
             copyId: data.get("copyId"),
             readerId: data.get("readerId"),
             dateOfBorrow: data.get("dateOfBorrow"),
-            dateOfReturn: data.get("dateOfReturn")
+            dateOfReturn: data.get("deadline")
         }
         fetch(apiAddress, {
             method: 'POST',
@@ -28,7 +28,9 @@ export default function AddBorrowing() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(borrowing)
-        }).then(res => console.log(res))
+        }).catch(error => {
+            alert("Egzemplarz został już wyporzyczony!");
+        })
     }
 
     return (
@@ -49,7 +51,7 @@ export default function AddBorrowing() {
                     }}
                 >
                     <Typography component="h1" variant="h5">
-                        Dodaj autora
+                        Wyporzycz
                     </Typography>
                     <Box
                         component="form"
@@ -64,7 +66,7 @@ export default function AddBorrowing() {
                                     required
                                     fullWidth
                                     id="copyId"
-                                    label="copyId"
+                                    label="ID egzemplarza"
                                     name="copyId"
                                     autoComplete="copyId"
                                     autoFocus
@@ -77,7 +79,7 @@ export default function AddBorrowing() {
                                     required
                                     fullWidth
                                     id="readerId"
-                                    label="readerId"
+                                    label="ID czytelnika"
                                     name="readerId"
                                     autoComplete="readerId"
                                     autoFocus
@@ -89,7 +91,7 @@ export default function AddBorrowing() {
                                     required
                                     fullWidth
                                     id="dateOfBorrow"
-                                    label="dateOfBorrow"
+                                    label="Dzień wyporzyczenia"
                                     name="dateOfBorrow"
                                     autoComplete="dateOfBorrow"
                                     autoFocus
@@ -99,10 +101,10 @@ export default function AddBorrowing() {
                             <Grid item xs={12}>
                                 <TextField
                                     fullWidth
-                                    id="dateOfReturn"
-                                    label="dateOfReturn"
-                                    name="dateOfReturn"
-                                    autoComplete="dateOfReturn"
+                                    id="deadline"
+                                    label="Do oddania przed"
+                                    name="deadline"
+                                    autoComplete="deadline"
                                     autoFocus
                                     color="secondary"
                                 />

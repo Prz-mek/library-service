@@ -10,10 +10,10 @@ public class ReaderMapper {
     }
 
     public static ReaderDTO mapReaderToReaderDTO(Reader reader) {
-        return new ReaderDTO(reader.getId(), reader.getFirstName(), reader.getLastName(), reader.getLibraryCardNumber());
+        return new ReaderDTO(reader.getId(), reader.getFirstName(), reader.getLastName(), reader.getEmail(), reader.getLibraryCardNumber());
     }
 
     public static Reader mapReaderDTOToReader(ReaderDTO reader) {
-        return new Reader(reader.getId(), reader.getFirstName(), reader.getLastName(), reader.getLibraryCardNumber(), null);
+        return new Reader(reader.getId(), reader.getFirstName(), reader.getLastName(), reader.getEmail(),reader.getLibraryCardNumber(), null);
     }
 }

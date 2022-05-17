@@ -32,8 +32,6 @@ public class Borrowing {
 
     private Date dateOfBorrow;
 
-    private Integer extensionsNumber;
-
     private Date deadline;
 
     private Date dateOfReturn;

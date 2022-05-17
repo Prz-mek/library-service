@@ -1,6 +1,5 @@
 import { Button, Container, TextField } from "@mui/material";
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,13 +11,17 @@ import Paper from '@mui/material/Paper';
 import * as XLSX from "xlsx";
 
 
-const apiAddress = "http://localhost:8080/api/v1/book";
+const apiAddress = "http://localhost:8080/api/v1/book/report";
 
 function Books() {
     const [books, setBooks] = useState(null);
     const [isError, setIsError] = useState(false);
     const [loading, setLoading] = useState(true);
     const [searchedTitle, setSearchedTitle] = useState("");
+    const [searchedAuthor, setSearchedAuthor] = useState("");
+    const [searchedGenre, setSearchedGenre] = useState("");
+    const [searchedCopies, setSearchedCopies] = useState(0);
+    const [searchedBorrowings, setSearchedBorrowings] = useState(0);
 
     const loadData = () => {
         fetch(apiAddress, {
@@ -48,16 +51,6 @@ function Books() {
 
     useEffect(loadData, []);
 
-    function deleteHandler(id) {
-        fetch(apiAddress + "/" + id, {
-            method: 'DELETE',
-            mode: 'cors'
-        }).finally(() => {
-            setLoading(true);
-            setBooks(null);
-        })
-    }
-
     const requestSearchTitle = (searchedVal) => {
         console.log(searchedVal)
         const filteredRows = books.filter((row) => {
@@ -67,17 +60,51 @@ function Books() {
         setBooks(filteredRows);
     };
 
+    const requestSearchAuthor = (searchedVal) => {
+        console.log(searchedVal)
+        const filteredRows = books.filter((row) => {
+            return row.title.toLowerCase().includes(searchedVal.toLowerCase());
+        });
+        setSearchedAuthor(searchedVal);
+        setBooks(filteredRows);
+    };
+
+    const requestSearchGenre = (searchedVal) => {
+        console.log(searchedVal)
+        const filteredRows = books.filter((row) => {
+            return row.genre.toLowerCase().includes(searchedVal.toLowerCase());
+        });
+        setSearchedGenre(searchedVal);
+        setBooks(filteredRows);
+    };
+
+    const requestSearchCopies = (searchedVal) => {
+        console.log(searchedVal)
+        const filteredRows = books.filter((row) => {
+            return row.copiesCount > searchedVal;
+        });
+        setSearchedCopies(searchedVal);
+        setBooks(filteredRows);
+    };
+
+    const requestSearchBorrowings = (searchedVal) => {
+        console.log(searchedVal)
+        const filteredRows = books.filter((row) => {
+            return row.borrowingsCount > searchedVal;
+        });
+        setSearchedBorrowings(searchedVal);
+        setBooks(filteredRows);
+    };
+
+
     if (loading) return <h1>Loading...</h1>
     if (isError) return <h1>Error!</h1>
     return (
         <Container>
-            <Link to="/book/add">
-                <Button>Dodaj</Button>
-            </Link>
 
-            <Link to="/books/report">
-                <Button>Zobacz raport</Button>
-            </Link>
+            <Button onClick={() => downloadExcel(books)}>
+                Pobierz plik Excel
+            </Button>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -91,9 +118,25 @@ function Books() {
                                     onChange={e => requestSearchTitle(e.target.value)}
                                 /></TableCell>
                             <TableCell align="center">ID autora</TableCell>
-                            <TableCell align="center">Gatunek</TableCell>
-                            <TableCell align="right"></TableCell>
-                            <TableCell align="right"></TableCell>
+                            <TableCell align="center">Nazwisko autora<br />
+                                <TextField
+                                    value={searchedAuthor}
+                                    onChange={e => requestSearchAuthor(e.target.value)}
+                                /></TableCell>
+                            <TableCell align="center">Gatunek<br />
+                                <TextField
+                                    value={searchedGenre}
+                                    onChange={e => requestSearchGenre(e.target.value)}
+                                /></TableCell>
+                            <TableCell align="right">Liczba kopii<TextField
+                                    value={searchedCopies}
+                                    onChange={e => requestSearchCopies(e.target.value)}
+                                /></TableCell>
+                            <TableCell align="right">Liczba wyporzyczeń<TextField
+                                    value={searchedBorrowings}
+                                    onChange={e => requestSearchBorrowings(e.target.value)}
+                                />
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -107,16 +150,10 @@ function Books() {
                                 <TableCell align="left">{row[Object.keys(row)[2]]}</TableCell>
                                 <TableCell align="right">{row[Object.keys(row)[3]]}</TableCell>
                                 <TableCell align="left">{row[Object.keys(row)[4]]}</TableCell>
-                                <TableCell align="right">
-                                    <Link to="/book/edit" state={{ id: row.id }}>
-                                        <Button>
-                                            Edytuj
-                                        </Button>
-                                    </Link>
-                                </TableCell>
-                                <TableCell align="center">
-                                    <Button onClick={() => deleteHandler(row.id)}>Usuń</Button>
-                                </TableCell>
+                                <TableCell align="left">{row[Object.keys(row)[5]]}</TableCell>
+                                <TableCell align="left">{row[Object.keys(row)[6]]}</TableCell>
+                                <TableCell align="left">{row[Object.keys(row)[7]]}</TableCell>
+                                
                             </TableRow>
                         ))}
                     </TableBody>
@@ -127,15 +164,3 @@ function Books() {
 }
 
 export default Books;
-
-
-// 
-
-// downloadExcel = (data) => {
-//     const worksheet = XLSX.utils.json_to_sheet(data);
-//     const workbook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-//     //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-//     //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-//     XLSX.writeFile(workbook, "DataSheet.xlsx");
-//   };

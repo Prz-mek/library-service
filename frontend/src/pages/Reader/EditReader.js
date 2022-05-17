@@ -48,6 +48,7 @@ export default function EditReader() {
         const reader = {
           firstName: data.get("firstName"),
           lastName: data.get("lastName"),
+          email: data.get("email"),
           libraryCardNumber: data.get("libraryCardNumber")
         }
         fetch(`${apiAddress}/${id}`, {
@@ -125,10 +126,22 @@ export default function EditReader() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      required
+                      fullWidth
+                      id="email"
+                      label="Adres e-mail"
+                      name="email"
+                      autoComplete="email"
+                      autoFocus
+                      color="secondary"
+                      defaultValue={reader.email}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
                       fullWidth
                       name="libraryCardNumber"
                       label="Numer karty bibliotecznej"
-                      // type="libraryCardNumber"
                       id="libraryCardNumber"
                       autoComplete="libraryCardNumber"
                       autoFocus

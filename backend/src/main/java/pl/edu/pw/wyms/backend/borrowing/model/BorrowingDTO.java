@@ -19,8 +19,6 @@ public class BorrowingDTO {
 
     private Date dateOfBorrow;
 
-    private Integer extensionsNumber;
-
     private Date deadline;
 
     private Date dateOfReturn;

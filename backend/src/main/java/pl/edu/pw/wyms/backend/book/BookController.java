@@ -3,6 +3,7 @@ package pl.edu.pw.wyms.backend.book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.wyms.backend.book.model.BookDTO;
+import pl.edu.pw.wyms.backend.book.model.BookReportVM;
 
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+    @GetMapping(path = "/report")
+    public List<BookReportVM> getAllBooksReport() {
+        return bookService.getAllBooksReport();
+    }
     @GetMapping(path = "/{bookId}")
     public BookDTO Book(@PathVariable("bookId") Long bookId) {
         return bookService.getBook(bookId);

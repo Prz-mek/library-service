@@ -28,9 +28,7 @@ public class ReaderService {
     }
 
     public void addReader(ReaderDTO reader) {
-        System.out.println(reader.getFirstName() + " " + reader.getLastName() + " " + reader.getLibraryCardNumber());
         Reader newReader = ReaderMapper.mapReaderDTOToReader(reader);
-        System.out.println(newReader.getFirstName() + " " + newReader.getLastName() + " " + newReader.getLibraryCardNumber());
         readerRepository.save(ReaderMapper.mapReaderDTOToReader(reader));
     }
 

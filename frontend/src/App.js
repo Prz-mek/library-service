@@ -8,6 +8,7 @@ import Copies from "./pages/Copy/Copies";
 import AddCopy from "./pages/Copy/AddCopy";
 import EditCopy from "./pages/Copy/EditCopy"
 import Books from "./pages/Book/Books";
+import BooksReport from "./pages/Book/BooksReport";
 import AddBook from "./pages/Book/AddBook";
 import EditBook from "./pages/Book/EditBook"
 import Authors from "./pages/Author/Authors";
@@ -35,7 +36,8 @@ function App() {
         <Route path="/copies" element={<Copies />} />
         <Route path="/copy/add" element={<AddCopy />} />
         <Route path="/copy/edit" element={<EditCopy />} />
-        <Route path="/Books" element={<Books />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/books/report" element={<BooksReport />} />
         <Route path="/book/add" element={<AddBook />} />
         <Route path="/book/edit" element={<EditBook />} />
       </Routes>

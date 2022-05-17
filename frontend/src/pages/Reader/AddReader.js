@@ -18,8 +18,15 @@ export default function AddReader() {
     const reader = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
+      email: data.get("email"),
       libraryCardNumber: data.get("libraryCardNumber")
     }
+
+    if (reader.firstName == "" || reader.lastName == "" || reader.email == "") {
+      alert("Nie podano wszystkich wymaganych danych!");
+      return;
+    }
+
     fetch(apiAddress, {
       method: 'POST',
       mode: 'cors',
@@ -82,12 +89,22 @@ export default function AddReader() {
                 />
               </Grid>
               <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="email"
+                      label="Adres e-mail"
+                      name="email"
+                      autoComplete="email"
+                      autoFocus
+                      color="secondary"
+                    />
+                  </Grid>
+              <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   name="libraryCardNumber"
                   label="Numer karty bibliotecznej"
-                  // type="libraryCardNumber"
                   id="libraryCardNumber"
                   autoComplete="libraryCardNumber"
                   autoFocus

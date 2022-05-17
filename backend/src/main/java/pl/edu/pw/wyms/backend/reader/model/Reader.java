@@ -27,6 +27,9 @@ public class Reader {
     private String lastName;
 
     @Column
+    private String email;
+
+    @Column
     private String libraryCardNumber;
 
     @OneToMany

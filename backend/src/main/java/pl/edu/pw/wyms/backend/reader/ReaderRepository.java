@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface ReaderRepository extends JpaRepository<Reader, Long> {
     Optional<Reader> findByLibraryCardNumber(String libraryCardNumber);
+    Optional<Reader> findByEmail(String email);
 }

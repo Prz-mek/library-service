@@ -46,8 +46,10 @@ export default function EditBook() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const book = {
-            firstName: data.get("firstName"),
-            lastName: data.get("lastName")
+            title: data.get("title"),
+            isbn: data.get("isbn"),
+            authorId: parseInt(data.get("authorId")),
+            genre: data.get("genre")
         }
         fetch(`${apiAddress}/${id}`, {
             method: 'PUT',
@@ -116,7 +118,7 @@ export default function EditBook() {
                                     fullWidth
                                     id="title"
                                     label="Tytuł"
-                                    name="ftitle"
+                                    name="title"
                                     autoComplete="title"
                                     autoFocus
                                     color="secondary"
@@ -129,7 +131,7 @@ export default function EditBook() {
                                     fullWidth
                                     id="authorId"
                                     label="Id autora"
-                                    name="authorIde"
+                                    name="authorId"
                                     autoComplete="authorId"
                                     autoFocus
                                     color="secondary"
